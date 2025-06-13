@@ -38,19 +38,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -91,6 +84,45 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  .sepia {
+    --background: 35 20% 95%;
+    --foreground: 35 100% 5%;
+
+    --card: 35 15% 92%;
+    --card-foreground: 35 100% 5%;
+
+    --popover: 35 15% 92%;
+    --popover-foreground: 35 100% 5%;
+
+    --primary: 35 50% 25%;
+    --primary-foreground: 35 20% 95%;
+
+    --secondary: 35 10% 85%;
+    --secondary-foreground: 35 50% 25%;
+
+    --muted: 35 10% 85%;
+    --muted-foreground: 35 20% 40%;
+
+    --accent: 35 15% 80%;
+    --accent-foreground: 35 50% 25%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 10% 80%;
+    --input: 35 10% 80%;
+    --ring: 35 50% 25%;
+
+    --sidebar-background: 35 15% 90%;
+    --sidebar-foreground: 35 50% 25%;
+    --sidebar-primary: 35 50% 25%;
+    --sidebar-primary-foreground: 35 20% 95%;
+    --sidebar-accent: 35 10% 85%;
+    --sidebar-accent-foreground: 35 50% 25%;
+    --sidebar-border: 35 10% 80%;
+    --sidebar-ring: 35 50% 25%;
+  }
 }
 
 @layer base {
@@ -109,7 +141,7 @@
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
   padding: 1px 2px;
   border-radius: 3px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .highlight-number {
@@ -117,7 +149,7 @@
   background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
   padding: 1px 2px;
   border-radius: 3px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .highlight-quote {
@@ -125,7 +157,7 @@
   background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.05));
   padding: 1px 2px;
   border-radius: 3px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .highlight-hashtag {
@@ -133,7 +165,7 @@
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.05));
   padding: 1px 2px;
   border-radius: 3px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .highlight-date {
@@ -141,10 +173,10 @@
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
   padding: 1px 2px;
   border-radius: 3px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
-/* Enhanced hover effects */
+/* Enhanced hover effects with smooth animations */
 .highlight-capital:hover,
 .highlight-number:hover,
 .highlight-quote:hover,
@@ -157,7 +189,7 @@
 /* Placeholder styling */
 [data-placeholder]:empty:before {
   content: attr(data-placeholder);
-  color: rgb(100 116 139);
+  color: hsl(var(--muted-foreground));
   cursor: text;
   font-style: italic;
 }
@@ -168,20 +200,33 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.5);
+  background: hsl(var(--muted));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.5);
+  background: hsl(var(--muted-foreground) / 0.5);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.7);
+  background: hsl(var(--muted-foreground) / 0.7);
 }
 
 /* Smooth transitions for all interactive elements */
 * {
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
+
+/* Theme-specific adjustments */
+.light .highlight-capital { @apply text-blue-600; }
+.light .highlight-number { @apply text-green-600; }
+.light .highlight-quote { @apply text-orange-600; }
+.light .highlight-hashtag { @apply text-purple-600; }
+.light .highlight-date { @apply text-red-600; }
+
+.sepia .highlight-capital { @apply text-blue-700; }
+.sepia .highlight-number { @apply text-green-700; }
+.sepia .highlight-quote { @apply text-orange-700; }
+.sepia .highlight-hashtag { @apply text-purple-700; }
+.sepia .highlight-date { @apply text-red-700; }

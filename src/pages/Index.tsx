@@ -3,39 +3,71 @@ import { useState, useRef, useEffect } from 'react';
 import TextEditor from '../components/TextEditor';
 import Toolbar from '../components/Toolbar';
 import ColorLegend from '../components/ColorLegend';
+import WordCounter from '../components/WordCounter';
+import { ThemeProvider } from '../contexts/ThemeContext';
 
-const Index = () => {
+const IndexContent = () => {
   const [content, setContent] = useState('');
   const [showLegend, setShowLegend] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
 
+  // Auto-save to localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('colorpad-content');
+    if (saved) {
+      setContent(saved);
+      if (editorRef.current) {
+        editorRef.current.innerHTML = saved;
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (content !== '') {
+      localStorage.setItem('colorpad-content', content);
+    }
+  }, [content]);
+
   const handleClear = () => {
     setContent('');
+    localStorage.removeItem('colorpad-content');
     if (editorRef.current) {
       editorRef.current.innerHTML = '';
       editorRef.current.focus();
     }
   };
 
-  const handleDownload = () => {
+  const handleDownload = (format: 'txt' | 'md') => {
     // Extract plain text from HTML content
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = content;
     const plainText = tempDiv.textContent || tempDiv.innerText || '';
     
-    const blob = new Blob([plainText], { type: 'text/plain' });
+    const mimeType = format === 'md' ? 'text/markdown' : 'text/plain';
+    const blob = new Blob([plainText], { type: mimeType });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'colorpad-note.txt';
+    link.download = `colorpad-note.${format}`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
 
+  const handleImport = (importedContent: string) => {
+    setContent(importedContent);
+    if (editorRef.current) {
+      editorRef.current.innerText = importedContent;
+      // Trigger highlighting
+      const inputEvent = new Event('input', { bubbles: true });
+      editorRef.current.dispatchEvent(inputEvent);
+      editorRef.current.focus();
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background transition-colors duration-500">
       <div className="container mx-auto px-4 py-6 h-screen flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
@@ -47,11 +79,11 @@ const Index = () => {
               ColorPad
             </h1>
           </div>
-          <Toolbar onClear={handleClear} onDownload={handleDownload} />
+          <Toolbar onClear={handleClear} onDownload={handleDownload} onImport={handleImport} />
         </div>
 
         {/* Editor */}
-        <div className="flex-1 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50 shadow-2xl overflow-hidden">
+        <div className="flex-1 bg-card/50 backdrop-blur-sm rounded-2xl border border-border shadow-2xl overflow-hidden">
           <TextEditor
             ref={editorRef}
             content={content}
@@ -59,30 +91,34 @@ const Index = () => {
           />
         </div>
 
-        {/* Footer */}
-        <div className="mt-4 text-center text-slate-400 text-sm">
-          <p>Type and watch your text come alive with colors! 🎨</p>
-          <div className="mt-2 flex flex-wrap justify-center gap-4 text-xs">
-            <span className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-              Capitals
-            </span>
-            <span className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              Numbers
-            </span>
-            <span className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-              Quotes
-            </span>
-            <span className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-              Hashtags
-            </span>
-            <span className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-              Dates
-            </span>
+        {/* Footer with Stats */}
+        <div className="mt-4 space-y-3">
+          <WordCounter content={content} />
+          
+          <div className="text-center text-muted-foreground text-sm">
+            <p>Type and watch your text come alive with colors! 🎨</p>
+            <div className="mt-2 flex flex-wrap justify-center gap-4 text-xs">
+              <span className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                Capitals
+              </span>
+              <span className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                Numbers
+              </span>
+              <span className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                Quotes
+              </span>
+              <span className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                Hashtags
+              </span>
+              <span className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                Dates
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -93,6 +129,14 @@ const Index = () => {
         onToggle={() => setShowLegend(!showLegend)} 
       />
     </div>
+  );
+};
+
+const Index = () => {
+  return (
+    <ThemeProvider>
+      <IndexContent />
+    </ThemeProvider>
   );
 };
 
