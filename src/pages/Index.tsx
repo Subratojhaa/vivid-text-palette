@@ -2,9 +2,11 @@
 import { useState, useRef, useEffect } from 'react';
 import TextEditor from '../components/TextEditor';
 import Toolbar from '../components/Toolbar';
+import ColorLegend from '../components/ColorLegend';
 
 const Index = () => {
   const [content, setContent] = useState('');
+  const [showLegend, setShowLegend] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
 
   const handleClear = () => {
@@ -84,6 +86,12 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      {/* Color Legend */}
+      <ColorLegend 
+        isVisible={showLegend} 
+        onToggle={() => setShowLegend(!showLegend)} 
+      />
     </div>
   );
 };
