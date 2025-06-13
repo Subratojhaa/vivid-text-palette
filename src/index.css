@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -100,4 +101,87 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* ColorPad Highlighting Styles */
+.highlight-capital {
+  @apply text-blue-400 font-medium;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+  padding: 1px 2px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.highlight-number {
+  @apply text-green-400 font-medium;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+  padding: 1px 2px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.highlight-quote {
+  @apply text-orange-400 font-medium;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.05));
+  padding: 1px 2px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.highlight-hashtag {
+  @apply text-purple-400 font-medium;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.05));
+  padding: 1px 2px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.highlight-date {
+  @apply text-red-400 font-medium;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+  padding: 1px 2px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+/* Enhanced hover effects */
+.highlight-capital:hover,
+.highlight-number:hover,
+.highlight-quote:hover,
+.highlight-hashtag:hover,
+.highlight-date:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder styling */
+[data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: rgb(100 116 139);
+  cursor: text;
+  font-style: italic;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.7);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
