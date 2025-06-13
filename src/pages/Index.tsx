@@ -68,22 +68,22 @@ const IndexContent = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background transition-colors duration-500">
-      <div className="container mx-auto px-4 py-6 h-screen flex flex-col">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">C</span>
+      <div className="container mx-auto px-2 py-2 h-screen flex flex-col">
+        {/* Compact Header */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center space-x-2">
+            <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-md flex items-center justify-center">
+              <span className="text-white font-bold text-xs">C</span>
             </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               ColorPad
             </h1>
           </div>
           <Toolbar onClear={handleClear} onDownload={handleDownload} onImport={handleImport} />
         </div>
 
-        {/* Editor */}
-        <div className="flex-1 bg-card/50 backdrop-blur-sm rounded-2xl border border-border shadow-2xl overflow-hidden">
+        {/* Main Editor - Much Larger */}
+        <div className="flex-1 bg-card/50 backdrop-blur-sm rounded-xl border border-border shadow-xl overflow-hidden">
           <TextEditor
             ref={editorRef}
             content={content}
@@ -91,31 +91,31 @@ const IndexContent = () => {
           />
         </div>
 
-        {/* Footer with Stats */}
-        <div className="mt-4 space-y-3">
-          <WordCounter content={content} />
-          
-          <div className="text-center text-muted-foreground text-sm">
-            <p>Type and watch your text come alive with colors! 🎨</p>
-            <div className="mt-2 flex flex-wrap justify-center gap-4 text-xs">
+        {/* Minimal Footer with Compact Stats */}
+        <div className="mt-2 space-y-1">
+          <div className="flex items-center justify-between">
+            <WordCounter content={content} />
+            
+            {/* Compact Color Legend */}
+            <div className="flex flex-wrap gap-2 text-xs opacity-70">
               <span className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                 Capitals
               </span>
               <span className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 Numbers
               </span>
               <span className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                 Quotes
               </span>
               <span className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                 Hashtags
               </span>
               <span className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
                 Dates
               </span>
             </div>

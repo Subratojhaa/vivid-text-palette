@@ -135,7 +135,130 @@
   }
 }
 
-/* ColorPad Highlighting Styles */
+/* ColorPad Highlighting Styles - Dark Mode */
+.dark .highlight-capital {
+  @apply text-blue-400 font-medium;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.08));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.dark .highlight-number {
+  @apply text-green-400 font-medium;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.08));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.dark .highlight-quote {
+  @apply text-orange-400 font-medium;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(249, 115, 22, 0.08));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.dark .highlight-hashtag {
+  @apply text-purple-400 font-medium;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(168, 85, 247, 0.08));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.dark .highlight-date {
+  @apply text-red-400 font-medium;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.08));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* ColorPad Highlighting Styles - Light Mode */
+.light .highlight-capital {
+  @apply text-blue-700 font-medium;
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.12), rgba(29, 78, 216, 0.06));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.light .highlight-number {
+  @apply text-green-700 font-medium;
+  background: linear-gradient(135deg, rgba(21, 128, 61, 0.12), rgba(21, 128, 61, 0.06));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.light .highlight-quote {
+  @apply text-orange-700 font-medium;
+  background: linear-gradient(135deg, rgba(194, 65, 12, 0.12), rgba(194, 65, 12, 0.06));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.light .highlight-hashtag {
+  @apply text-purple-700 font-medium;
+  background: linear-gradient(135deg, rgba(126, 34, 206, 0.12), rgba(126, 34, 206, 0.06));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.light .highlight-date {
+  @apply text-red-700 font-medium;
+  background: linear-gradient(135deg, rgba(185, 28, 28, 0.12), rgba(185, 28, 28, 0.06));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* ColorPad Highlighting Styles - Sepia Mode */
+.sepia .highlight-capital {
+  @apply text-blue-800 font-medium;
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.15), rgba(30, 64, 175, 0.08));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.sepia .highlight-number {
+  @apply text-green-800 font-medium;
+  background: linear-gradient(135deg, rgba(22, 101, 52, 0.15), rgba(22, 101, 52, 0.08));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.sepia .highlight-quote {
+  @apply text-orange-800 font-medium;
+  background: linear-gradient(135deg, rgba(154, 52, 18, 0.15), rgba(154, 52, 18, 0.08));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.sepia .highlight-hashtag {
+  @apply text-purple-800 font-medium;
+  background: linear-gradient(135deg, rgba(107, 33, 168, 0.15), rgba(107, 33, 168, 0.08));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.sepia .highlight-date {
+  @apply text-red-800 font-medium;
+  background: linear-gradient(135deg, rgba(153, 27, 27, 0.15), rgba(153, 27, 27, 0.08));
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Default highlighting (fallback for when theme class isn't applied yet) */
 .highlight-capital {
   @apply text-blue-400 font-medium;
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
@@ -217,16 +340,3 @@
 * {
   transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
-
-/* Theme-specific adjustments */
-.light .highlight-capital { @apply text-blue-600; }
-.light .highlight-number { @apply text-green-600; }
-.light .highlight-quote { @apply text-orange-600; }
-.light .highlight-hashtag { @apply text-purple-600; }
-.light .highlight-date { @apply text-red-600; }
-
-.sepia .highlight-capital { @apply text-blue-700; }
-.sepia .highlight-number { @apply text-green-700; }
-.sepia .highlight-quote { @apply text-orange-700; }
-.sepia .highlight-hashtag { @apply text-purple-700; }
-.sepia .highlight-date { @apply text-red-700; }

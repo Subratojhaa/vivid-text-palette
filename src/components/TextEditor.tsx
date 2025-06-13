@@ -128,13 +128,13 @@ const TextEditor = forwardRef<HTMLDivElement, TextEditorProps>(
     }, [ref, content]);
 
     return (
-      <div className="h-full p-6">
+      <div className="h-full p-8">
         <div
           ref={ref}
           contentEditable
           onInput={handleInput}
           onPaste={handlePaste}
-          className="w-full h-full bg-transparent text-slate-100 text-lg leading-relaxed outline-none resize-none placeholder:text-slate-500 overflow-auto"
+          className="w-full h-full bg-transparent text-foreground text-xl leading-relaxed outline-none resize-none placeholder:text-muted-foreground overflow-auto"
           style={{ 
             minHeight: '100%',
             whiteSpace: 'pre-wrap',
